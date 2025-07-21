@@ -17,6 +17,7 @@ export default defineConfig({
       entry: {
         mui: "src/mui/index.tsx",
         "mui/components": "src/mui/components/index.ts",
+        "mui/utils": "src/mui/utils/index.ts",
         storybook: "src/storybook/index.ts",
         "tanstack/form": "src/tanstack/form/index.ts",
         "tanstack/start": "src/tanstack/start/index.ts",

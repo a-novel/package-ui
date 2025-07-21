@@ -17,6 +17,10 @@
       "import": "./dist/mui/components/index.es.js",
       "types": "./dist/mui/components/index.d.ts"
     },
+    "./mui/utils": {
+      "import": "./dist/mui/utils/index.es.js",
+      "types": "./dist/mui/utils/index.d.ts"
+    },
     "./storybook": {
       "import": "./dist/storybook/index.es.js",
       "types": "./dist/storybook/index.d.ts"
