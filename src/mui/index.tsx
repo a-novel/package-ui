@@ -23,7 +23,7 @@ import type { CSSProperties, FC, ReactNode } from "react";
 
 import { createTheme, CssBaseline, responsiveFontSizes, ThemeProvider } from "@mui/material";
 
-export type { NeonUIButtonVariants } from "./mui_button";
+export type { AgoraUIButtonPropsVariant } from "./mui_button";
 
 let theme = createTheme({
   palette,

@@ -14,7 +14,7 @@ import type {
   Theme,
 } from "@mui/material";
 
-export interface NeonUIButtonVariants {
+export interface AgoraUIButtonPropsVariant {
   gradient: true;
   glow: true;
   "gradient-glow": true;
@@ -24,7 +24,7 @@ export interface NeonUIButtonVariants {
 
 declare module "@mui/material" {
   //eslint-disable-next-line @typescript-eslint/no-empty-object-type
-  interface ButtonPropsVariantOverrides extends NeonUIButtonVariants {}
+  interface ButtonPropsVariantOverrides extends AgoraUIButtonPropsVariant {}
 }
 
 const buttonVariant = (
