@@ -1,4 +1,4 @@
-export { routerWithAgoraContext, type ValidateRouter, type AgoraRouterOptions } from "./router";
+export { routerWithAgoraContext, type AgoraRouterOptions, type AgoraRouterContext } from "./router";
 export { createAgoraRootRoute } from "./root_route";
 export { useClientTags, type ClientManagedTagsContextType, useClientTag } from "./head_tags";
 export { DefaultRootComponent, type DefaultRootComponentProps } from "./document";
