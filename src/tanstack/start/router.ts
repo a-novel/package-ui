@@ -1,5 +1,5 @@
 import type { QueryClient } from "@tanstack/react-query";
-import { type AnyRouterWithContext } from "@tanstack/react-router";
+import { type AnyRouter } from "@tanstack/react-router";
 import {
   routerWithQueryClient,
   type ValidateRouter as TanstackQueryValidateRouter,
@@ -16,10 +16,13 @@ export type AgoraRouterContext = {
   queryClient: QueryClient;
 };
 
-export function routerWithAgoraContext<
-  TContext extends AgoraRouterContext,
-  TRouter extends AnyRouterWithContext<TContext>,
->(router: TRouter, options: AgoraRouterOptions): TRouter {
+export type ValidateRouter<TRouter extends AnyRouter> =
+  NonNullable<TRouter["options"]["context"]> extends AgoraRouterContext ? TRouter : never;
+
+export function routerWithAgoraContext<TRouter extends AnyRouter>(
+  router: ValidateRouter<TRouter>,
+  options: AgoraRouterOptions
+): TRouter {
   const ogOptions = router.options;
 
   router.options = {
@@ -30,5 +33,5 @@ export function routerWithAgoraContext<
     },
   };
 
-  return routerWithQueryClient(router as TanstackQueryValidateRouter<TRouter>, options.queryClient);
+  return routerWithQueryClient(router as unknown as TanstackQueryValidateRouter<TRouter>, options.queryClient);
 }
