@@ -33,3 +33,24 @@ Then, install the package using pnpm:
 # pnpm config set auto-install-peers true --location project
 pnpm add @a-novel/package-ui
 ```
+
+### Requirements
+
+You need to import material symbols in your app.
+
+```html
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+```
+
+Also create the following `mui.d.ts` file (make sure it is included in your `tsconfig.json`):
+
+```typescript
+import type { AgoraUIButtonPropsVariant } from "@a-novel/package-ui/mui";
+
+import "@mui/material";
+
+declare module "@mui/material" {
+  //eslint-disable-next-line @typescript-eslint/no-empty-object-type
+  interface ButtonPropsVariantOverrides extends AgoraUIButtonPropsVariant {}
+}
+```
