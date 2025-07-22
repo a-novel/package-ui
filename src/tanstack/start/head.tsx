@@ -9,15 +9,15 @@ import { Asset, type RouterManagedTag, useRouter, useRouterState } from "@tansta
  */
 export function HeadContent() {
   const routeMeta = useRouterState({
-    select: (state: any) => {
-      return state.matches.map((match: any) => match.meta!).filter(Boolean);
+    select: (state) => {
+      return state.matches.map((match) => match.meta!).filter(Boolean);
     },
   });
 
   const { tags: clientTags } = useClientTags();
 
   // The original router tags are left untouched. The custom client tags are appended to the original config.
-  const combinedTags = useTags([...routeMeta.matches, ...clientTags]);
+  const combinedTags = useTags([...routeMeta, ...clientTags]);
 
   return combinedTags.map((tag) => <Asset {...tag} key={`tsr-meta-${JSON.stringify(tag)}`} />);
 }
@@ -27,7 +27,6 @@ export function HeadContent() {
 //  don't miss any feature.
 function useTags(routeMeta: any[]) {
   const router = useRouter();
-
   const meta: Array<RouterManagedTag> = React.useMemo(() => {
     const resultMeta: Array<RouterManagedTag> = [];
     const metaByAttribute: Record<string, true> = {};

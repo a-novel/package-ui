@@ -1,10 +1,12 @@
 import {
   createContext,
+  type DependencyList,
   type DetailedHTMLProps,
   type Dispatch,
   type MetaHTMLAttributes,
   type ReactNode,
   type SetStateAction,
+  useCallback,
   useContext,
   useEffect,
   useState,
@@ -19,11 +21,11 @@ export interface ClientManagedTagsContextType {
   /**
    * A list of custom tags to be appended to the head config.
    */
-  tags: HeadTag[];
+  tags: HeadTag[][];
   /**
    * Manage the custom client tags, without touching the router tags.
    */
-  setTags: Dispatch<SetStateAction<HeadTag[]>>;
+  setTags: Dispatch<SetStateAction<HeadTag[][]>>;
 }
 
 const ClientManagedTagsContext = createContext<ClientManagedTagsContextType>({
@@ -36,7 +38,7 @@ export function useClientTags() {
 }
 
 export function ClientTagsProvider({ children }: { children: ReactNode }) {
-  const [clientTags, setClientTags] = useState<HeadTag[]>([]);
+  const [clientTags, setClientTags] = useState<HeadTag[][]>([]);
 
   return (
     <ClientManagedTagsContext.Provider value={{ tags: clientTags, setTags: setClientTags }}>
@@ -45,15 +47,23 @@ export function ClientTagsProvider({ children }: { children: ReactNode }) {
   );
 }
 
-export function useClientTag(tag: HeadTag | null | undefined) {
+export function useClientTag(create: () => HeadTag[], deps: DependencyList) {
   const { setTags } = useClientTags();
+  //eslint-disable-next-line react-hooks/exhaustive-deps
+  const doCreate = useCallback(create, deps);
 
   useEffect(() => {
-    if (tag == null) return;
+    const tags = doCreate();
+    if (tags.length === 0) {
+      return;
+    }
 
-    setTags((prevTags) => [...(prevTags ?? []), tag]);
+    setTags((prev) => [...prev, tags]);
+
+    // Cleanup function to remove the tags when the component unmounts,
+    // or when the dependencies change.
     return () => {
-      setTags((prevTags) => prevTags?.filter((tag) => tag !== tag));
+      setTags((prev) => prev.filter((t) => t !== tags));
     };
-  }, [setTags, tag]);
+  }, [setTags, doCreate]);
 }

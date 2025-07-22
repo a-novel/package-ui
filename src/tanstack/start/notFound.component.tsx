@@ -2,8 +2,6 @@ import { MaterialSymbol, StatusPage } from "~/mui/components";
 import { useClientTag } from "~/tanstack/start/head_tags";
 import { useTolgeeNs } from "~/translations";
 
-import { useMemo } from "react";
-
 import { Typography } from "@mui/material";
 import { T, useTolgee } from "@tolgee/react";
 
@@ -23,7 +21,7 @@ export function DefaultNotFoundComponent(preset: Readonly<DefaultNotFoundCompone
     const { t } = useTolgee();
 
     useTolgeeNs(preset.ns);
-    useClientTag(useMemo(() => ({ title: t(preset.metadata.titleKey, { ns: preset.ns }) }), [t]));
+    useClientTag(() => [{ title: t(preset.metadata.titleKey, { ns: preset.ns }) }], [t]);
 
     return (
       <StatusPage color="warning" icon={<MaterialSymbol icon="broken_image" />}>
