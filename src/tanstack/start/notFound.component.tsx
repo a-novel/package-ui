@@ -7,7 +7,7 @@ import { useMemo } from "react";
 import { Typography } from "@mui/material";
 import { T, useTolgee } from "@tolgee/react";
 
-export interface NotFoundComponentProps {
+export interface DefaultNotFoundComponentProps {
   ns?: string;
   metadata: {
     titleKey: string;
@@ -18,7 +18,7 @@ export interface NotFoundComponentProps {
   };
 }
 
-export function DefaultNotFoundComponent(preset: Readonly<NotFoundComponentProps>) {
+export function DefaultNotFoundComponent(preset: Readonly<DefaultNotFoundComponentProps>) {
   return function NotFoundComponent() {
     const { t } = useTolgee();
 

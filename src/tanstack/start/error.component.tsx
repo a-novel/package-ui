@@ -7,7 +7,7 @@ import { useMemo } from "react";
 import { Typography } from "@mui/material";
 import { T, useTolgee } from "@tolgee/react";
 
-export interface ErrorComponentProps {
+export interface DefaultErrorComponentProps {
   ns?: string;
   metadata: {
     titleKey: string;
@@ -18,7 +18,7 @@ export interface ErrorComponentProps {
   };
 }
 
-export function DefaultErrorComponent(preset: Readonly<ErrorComponentProps>) {
+export function DefaultErrorComponent(preset: Readonly<DefaultErrorComponentProps>) {
   return function ErrorComponent() {
     const { t } = useTolgee();
 

@@ -8,7 +8,7 @@ import type { ComponentType, ReactNode } from "react";
 import { Scripts, useRouterState } from "@tanstack/react-router";
 import { TolgeeProvider } from "@tolgee/react";
 
-export interface RootDocumentProps {
+export interface DefaultRootComponentProps {
   wrapper?: ComponentType<{ children: ReactNode }>;
 }
 
@@ -16,7 +16,7 @@ function PassthroughWrapper({ children }: { children: ReactNode }) {
   return <>{children}</>;
 }
 
-export function RouteDocument({ wrapper: Wrapper = PassthroughWrapper }: Readonly<RootDocumentProps>) {
+export function DefaultRootComponent({ wrapper: Wrapper = PassthroughWrapper }: Readonly<DefaultRootComponentProps>) {
   return function Document({ children }: Readonly<{ children: ReactNode }>) {
     const matches = useRouterState({ select: (s) => s.matches });
 
