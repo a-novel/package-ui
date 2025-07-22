@@ -15,7 +15,7 @@ export type ValidateRouter<TRouter extends AnyRouter> =
   NonNullable<TRouter["options"]["context"]> extends { tolgee: TolgeeInstance } ? TRouter : never;
 
 export function routerWithAgoraContext<TRouter extends AnyRouter>(
-  router: TanstackQueryValidateRouter<ValidateRouter<TRouter>>,
+  router: ValidateRouter<TRouter> & TanstackQueryValidateRouter<TRouter>,
   options: AgoraRouterOptions
 ): TRouter {
   const ogOptions = router.options;
@@ -28,5 +28,5 @@ export function routerWithAgoraContext<TRouter extends AnyRouter>(
     },
   };
 
-  return routerWithQueryClient(router, options.queryClient);
+  return routerWithQueryClient(router as TanstackQueryValidateRouter<TRouter>, options.queryClient);
 }
