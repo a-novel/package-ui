@@ -10,7 +10,7 @@ import {
   useState,
 } from "react";
 
-export type HeadTag = (DetailedHTMLProps<MetaHTMLAttributes<HTMLMetaElement>, HTMLMetaElement> | undefined)[];
+export type HeadTag = DetailedHTMLProps<MetaHTMLAttributes<HTMLMetaElement>, HTMLMetaElement> | undefined;
 
 /**
  * Context to dynamically override the router managed tags.
@@ -45,10 +45,12 @@ export function ClientTagsProvider({ children }: { children: ReactNode }) {
   );
 }
 
-export function useClientTag(tag: any) {
+export function useClientTag(tag: HeadTag | null | undefined) {
   const { setTags } = useClientTags();
 
   useEffect(() => {
+    if (tag == null) return;
+
     setTags((prevTags) => [...(prevTags ?? []), tag]);
     return () => {
       setTags((prevTags) => prevTags?.filter((tag) => tag !== tag));
