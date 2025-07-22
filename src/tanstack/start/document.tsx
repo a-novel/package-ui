@@ -5,11 +5,10 @@ import { TolgeeRouterProvider } from "~/translations";
 
 import type { ComponentType, ReactNode } from "react";
 
-import { Scripts } from "@tanstack/react-router";
-import { type TolgeeInstance, TolgeeProvider } from "@tolgee/react";
+import { Scripts, useRouterState } from "@tanstack/react-router";
+import { TolgeeProvider } from "@tolgee/react";
 
 export interface RootDocumentProps {
-  tolgee: TolgeeInstance;
   wrapper?: ComponentType<{ children: ReactNode }>;
 }
 
@@ -17,17 +16,21 @@ function PassthroughWrapper({ children }: { children: ReactNode }) {
   return <>{children}</>;
 }
 
-export function RouteDocument({ tolgee, wrapper: Wrapper = PassthroughWrapper }: Readonly<RootDocumentProps>) {
+export function RouteDocument({ wrapper: Wrapper = PassthroughWrapper }: Readonly<RootDocumentProps>) {
   return function Document({ children }: Readonly<{ children: ReactNode }>) {
+    const matches = useRouterState({ select: (s) => s.matches });
+
+    const tolgeeInstance = [...matches].reverse().find((match) => match.context?.tolgee)?.context?.tolgee;
+
     return (
-      <html lang={tolgee.getLanguage() ?? tolgee.getPendingLanguage()}>
+      <html lang={tolgeeInstance.getLanguage() ?? tolgeeInstance.getPendingLanguage()}>
         <ClientTagsProvider>
           <head>
             <title>...</title>
             <HeadContent />
           </head>
           <body style={BodyStyle}>
-            <TolgeeProvider tolgee={tolgee} options={{ useSuspense: true }}>
+            <TolgeeProvider tolgee={tolgeeInstance} options={{ useSuspense: true }}>
               <AgoraThemeProvider>
                 <TolgeeRouterProvider />
                 <Wrapper>{children}</Wrapper>

@@ -8,6 +8,12 @@ import {
   type RouterHistory,
 } from "@tanstack/react-router";
 import { routerWithQueryClient, type ValidateRouter } from "@tanstack/react-router-with-query";
+import type { TolgeeInstance } from "@tolgee/react";
+
+export interface AgoraRouterContext {
+  tolgee: TolgeeInstance;
+  queryClient: QueryClient;
+}
 
 export interface AgoraRouterProps<
   TRouteTree extends AnyRoute,
@@ -18,6 +24,7 @@ export interface AgoraRouterProps<
 > {
   routeTree: TRouteTree;
   queryClient: QueryClient;
+  tolgee: TolgeeInstance;
   router?: Partial<
     RouterConstructorOptions<
       TRouteTree,
@@ -53,7 +60,7 @@ export function createAgoraRouter<
     TDehydrated
   > = {
     routeTree: params.routeTree,
-    context: { queryClient: params.queryClient },
+    context: { queryClient: params.queryClient, tolgee: params.tolgee },
     scrollRestoration: true,
     defaultPreload: "intent",
     ...params.router,
