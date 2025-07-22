@@ -1,70 +1,32 @@
 import type { QueryClient } from "@tanstack/react-query";
+import { type AnyRouter } from "@tanstack/react-router";
 import {
-  createRouter as createTanStackRouter,
-  type AnyRoute,
-  type AnyRouter,
-  type RouterConstructorOptions,
-  type TrailingSlashOption,
-  type RouterHistory,
-} from "@tanstack/react-router";
-import { routerWithQueryClient, type ValidateRouter } from "@tanstack/react-router-with-query";
+  routerWithQueryClient,
+  type ValidateRouter as TanstackQueryValidateRouter,
+} from "@tanstack/react-router-with-query";
 import type { TolgeeInstance } from "@tolgee/react";
 
-export interface AgoraRouterContext {
+export interface AgoraRouterOptions {
   tolgee: TolgeeInstance;
   queryClient: QueryClient;
 }
 
-export interface AgoraRouterProps<
-  TRouteTree extends AnyRoute,
-  TTrailingSlashOption extends TrailingSlashOption,
-  TDefaultStructuralSharingOption extends boolean,
-  TRouterHistory extends RouterHistory,
-  TDehydrated extends Record<string, any>,
-> {
-  routeTree: TRouteTree;
-  queryClient: QueryClient;
-  tolgee: TolgeeInstance;
-  router?: Partial<
-    RouterConstructorOptions<
-      TRouteTree,
-      TTrailingSlashOption,
-      TDefaultStructuralSharingOption,
-      TRouterHistory,
-      TDehydrated
-    >
-  >;
-}
+export type ValidateRouter<TRouter extends AnyRouter> =
+  NonNullable<TRouter["options"]["context"]> extends { tolgee: TolgeeInstance } ? TRouter : never;
 
-export function createAgoraRouter<
-  TRouter extends AnyRouter,
-  TRouteTree extends AnyRoute,
-  TTrailingSlashOption extends TrailingSlashOption,
-  TDefaultStructuralSharingOption extends boolean,
-  TRouterHistory extends RouterHistory,
-  TDehydrated extends Record<string, any>,
->(
-  params: AgoraRouterProps<
-    TRouteTree,
-    TTrailingSlashOption,
-    TDefaultStructuralSharingOption,
-    TRouterHistory,
-    TDehydrated
-  >
-) {
-  const routerOptions: RouterConstructorOptions<
-    TRouteTree,
-    TTrailingSlashOption,
-    TDefaultStructuralSharingOption,
-    TRouterHistory,
-    TDehydrated
-  > = {
-    routeTree: params.routeTree,
-    context: { queryClient: params.queryClient, tolgee: params.tolgee },
-    scrollRestoration: true,
-    defaultPreload: "intent",
-    ...params.router,
+export function routerWithAgoraContext<TRouter extends AnyRouter>(
+  router: TanstackQueryValidateRouter<ValidateRouter<TRouter>>,
+  options: AgoraRouterOptions
+): TRouter {
+  const ogOptions = router.options;
+
+  router.options = {
+    ...router.options,
+    context: {
+      ...ogOptions.context,
+      tolgee: options.tolgee,
+    },
   };
 
-  return routerWithQueryClient(createTanStackRouter(routerOptions) as ValidateRouter<TRouter>, params.queryClient);
+  return routerWithQueryClient(router, options.queryClient);
 }
