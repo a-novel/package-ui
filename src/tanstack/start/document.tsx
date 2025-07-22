@@ -1,5 +1,6 @@
 import { AgoraThemeProvider, BodyStyle } from "~/mui";
-import { ClientTagsProvider, HeadContent } from "~/tanstack/start/head";
+import { HeadContent } from "~/tanstack/start/head";
+import { ClientTagsProvider } from "~/tanstack/start/head_tags";
 import { TolgeeRouterProvider } from "~/translations";
 
 import type { ComponentType, ReactNode } from "react";

@@ -1,40 +1,8 @@
-import { createContext, type Dispatch, type ReactNode, type SetStateAction, useContext, useState } from "react";
+import { useClientTags } from "~/tanstack/start/head_tags";
+
 import * as React from "react";
 
 import { Asset, type RouterManagedTag, useRouter, useRouterState } from "@tanstack/react-router";
-
-/**
- * Context to dynamically override the router managed tags.
- */
-export interface ClientManagedTagsContextType {
-  /**
-   * A list of custom tags to be appended to the head config.
-   */
-  tags: RouterManagedTag[];
-  /**
-   * Manage the custom client tags, without touching the router tags.
-   */
-  setTags: Dispatch<SetStateAction<RouterManagedTag[]>>;
-}
-
-const ClientManagedTagsContext = createContext<ClientManagedTagsContextType>({
-  tags: [],
-  setTags: () => console.warn("ClientManagedTagsContext.setTags called without provider"),
-});
-
-export function useClientTags() {
-  return useContext(ClientManagedTagsContext);
-}
-
-export function ClientTagsProvider({ children }: { children: ReactNode }) {
-  const [clientTags, setClientTags] = useState<RouterManagedTag[]>([]);
-
-  return (
-    <ClientManagedTagsContext.Provider value={{ tags: clientTags, setTags: setClientTags }}>
-      {children}
-    </ClientManagedTagsContext.Provider>
-  );
-}
 
 /**
  * Custom head manager that allows the router head config to be overridden through the client components.
