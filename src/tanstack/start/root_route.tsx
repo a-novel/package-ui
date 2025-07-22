@@ -31,7 +31,6 @@ export function createAgoraRootRoute<
           ...(baseHead?.meta ?? []),
         ],
         links: [
-          { rel: "icon", href: "/icon.png" },
           { href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined", rel: "stylesheet" },
           { href: arimo, rel: "stylesheet" },
           ...(baseHead?.links ?? []),

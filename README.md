@@ -36,13 +36,7 @@ pnpm add @a-novel/package-ui
 
 ### Requirements
 
-You need to import material symbols in your app.
-
-```html
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-```
-
-Also create the following `mui.d.ts` file (make sure it is included in your `tsconfig.json`):
+Create the following `mui.d.ts` file (make sure it is included in your `tsconfig.json`):
 
 ```typescript
 import type { AgoraUIButtonPropsVariant } from "@a-novel/package-ui/mui";
