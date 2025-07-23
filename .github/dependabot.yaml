@@ -15,7 +15,7 @@ updates:
     schedule:
       interval: daily
     ignore:
-      # Ignore storybook major updates, as they require a migration script
+      # Ignore storybook updates, as they require a migration script
       - dependency-name: "@storybook/*"
       - dependency-name: "storybook"
       - dependency-name: "eslint-plugin-storybook"

@@ -55,7 +55,7 @@
     "publish:major": "pnpm version major && git push --follow-tags",
     "publish:minor": "pnpm version minor && git push --follow-tags",
     "publish:patch": "pnpm version patch && git push --follow-tags",
-    "storybook:build": "storybook build --debug",
+    "storybook:build": "storybook build",
     "storybook:dev": "storybook dev -p 6006"
   },
   "devDependencies": {
