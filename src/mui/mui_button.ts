@@ -152,8 +152,8 @@ export const MuiButton: Components<Theme>["MuiButton"] = {
   styleOverrides: {
     root: {
       textTransform: "none",
-      fontWeight: 500,
-      padding: SPACINGS.MEDIUM,
+      fontWeight: 600,
+      padding: "0.6em 1.2em",
       display: "flex",
       textAlign: "center",
       justifyContent: "center",

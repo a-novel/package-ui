@@ -23,6 +23,7 @@ export const TanstackFormWrapper = ({
 }: TanstackFormWrapperProps) => {
   const submitError = useStore(form.store, (state) => state.errorMap.onSubmit);
   const isSubmitting = useStore(form.store, (state) => state.isSubmitting);
+  const submitButtonSX = submitButtonProps?.sx ?? {};
 
   return (
     <Stack direction="column" alignItems="stretch" boxSizing="border-box" spacing={SPACINGS.LARGE} {...props}>
@@ -46,6 +47,7 @@ export const TanstackFormWrapper = ({
           color="primary"
           type="submit"
           {...submitButtonProps}
+          sx={[{ padding: SPACINGS.MEDIUM }, ...(Array.isArray(submitButtonSX) ? submitButtonSX : [submitButtonSX])]}
           disabled={submitButtonProps?.disabled ?? isSubmitting}
         >
           {typeof submitButton === "function" ? submitButton(isSubmitting) : submitButton}
