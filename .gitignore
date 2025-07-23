@@ -9,3 +9,5 @@ storybook-static
 
 # Node modules
 node_modules
+
+*storybook.log
