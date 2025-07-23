@@ -26,24 +26,24 @@ import { createTheme, CssBaseline, responsiveFontSizes, ThemeProvider } from "@m
 
 export type { AgoraUIButtonPropsVariant } from "./mui_button";
 
-let theme = createTheme({
-  palette,
-  spacing: SPACINGS.BASE,
-  typography,
-  components: {
-    MuiModal,
-    MuiButton,
-    MuiTextField,
-    MuiInputLabel,
-    MuiInputBase,
-    MuiFormHelperText,
-    MuiPopover,
-    MuiAppBar,
-    MuiSelect,
-  },
-});
-
-theme = responsiveFontSizes(theme, { factor: 1.6 });
+const theme = responsiveFontSizes(
+  createTheme({
+    palette,
+    spacing: SPACINGS.BASE,
+    typography,
+    components: {
+      MuiModal,
+      MuiButton,
+      MuiTextField,
+      MuiInputLabel,
+      MuiInputBase,
+      MuiFormHelperText,
+      MuiPopover,
+      MuiAppBar,
+      MuiSelect,
+    },
+  })
+);
 
 export { theme };
 
