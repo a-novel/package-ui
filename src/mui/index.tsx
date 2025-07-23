@@ -14,6 +14,7 @@ import { MuiInputBase } from "./mui_input_base";
 import { MuiInputLabel } from "./mui_input_label";
 import { MuiModal } from "./mui_modal";
 import { MuiPopover } from "./mui_popover";
+import { MuiSelect } from "./mui_select";
 import { MuiTextField } from "./mui_text_field";
 import { palette } from "./palette";
 import { typography } from "./typography";
@@ -38,6 +39,7 @@ let theme = createTheme({
     MuiFormHelperText,
     MuiPopover,
     MuiAppBar,
+    MuiSelect,
   },
 });
 
