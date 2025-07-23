@@ -69,7 +69,8 @@ export const buttonListItemVariant = (
 ): ArrayElement<ComponentsVariants<Theme>["MuiButton"]> => ({
   props: { variant: "list-item", color: paletteColor },
   style: {
-    padding: SPACINGS.MEDIUM,
+    fontWeight: 600,
+    padding: "0.6em 1.2em",
     borderRadius: SPACINGS.SMALL,
     display: "flex",
     alignItems: "center",
