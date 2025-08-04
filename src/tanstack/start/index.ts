@@ -4,7 +4,12 @@ export {
   type AgoraRouterContext,
   type ValidateRouter,
 } from "./router";
-export { useClientTags, type ClientManagedTagsContextType, useClientTag } from "./head_tags";
+export {
+  useOverrideRouteMeta,
+  useOverrideRouteMetaTitle,
+  useOverrideRouteMetaDescription,
+  type OverrideRouteMetaContext,
+} from "./head";
 export { DefaultRootComponent, type DefaultRootComponentProps } from "./document";
 export { DefaultErrorComponent, type DefaultErrorComponentProps } from "./error.component";
 export { DefaultNotFoundComponent, type DefaultNotFoundComponentProps } from "./notFound.component";
