@@ -45,29 +45,9 @@ export function HeadContent() {
 
 function useContextValue<T>(matches: AnyRouteMatch[], key: string): T | undefined;
 function useContextValue<T>(matches: AnyRouteMatch[], key: string, defaultValue: T): T;
-function useContextValue<T>(
-  matches: AnyRouteMatch[],
-  key: string,
-  matched: (match: AnyRouteMatch) => boolean
-): T | undefined;
-function useContextValue<T>(
-  matches: AnyRouteMatch[],
-  key: string,
-  matched: (match: AnyRouteMatch) => boolean,
-  defaultValue: T
-): T;
 
-function useContextValue<T>(
-  matches: AnyRouteMatch[],
-  key: string,
-  opt1?: T | ((match: AnyRouteMatch) => boolean),
-  opt2?: T
-): T | undefined {
-  const matcher =
-    (opt2 ? (opt1 as (match: AnyRouteMatch) => boolean) : undefined) ?? ((match: AnyRouteMatch) => match.context[key]);
-  const defaultValue = opt2 ?? (opt1 as T);
-
-  return matches.find(matcher)?.context[key] ?? defaultValue;
+function useContextValue<T>(matches: AnyRouteMatch[], key: string, defaultValue?: T): T | undefined {
+  return matches.find((match) => match.context[key])?.context[key] ?? defaultValue;
 }
 
 export interface OverrideRouteMetaContext {
