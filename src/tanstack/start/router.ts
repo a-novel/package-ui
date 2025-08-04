@@ -14,6 +14,9 @@ export interface AgoraRouterOptions {
 export type AgoraRouterContext = {
   tolgee: TolgeeInstance;
   queryClient: QueryClient;
+  title?: string;
+  titleTemplate?: (title: string) => string;
+  description?: string;
 };
 
 export type ValidateRouter<TRouter extends AnyRouter> =
