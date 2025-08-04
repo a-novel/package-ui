@@ -21,14 +21,9 @@ export function HeadContent() {
   const matches = useRouterState({ select: (s) => s.matches });
   const reversedMatches = useMemo(() => [...matches].reverse(), [matches]);
 
-  const title = useContextValue<string>(reversedMatches, "titleBase", "");
+  const title = useContextValue<string>(reversedMatches, "title", "");
   const titleTemplate = useContextValue<(title: string) => string>(reversedMatches, "titleTemplate", (title) => title);
-  const description = useContextValue<string>(
-    reversedMatches,
-    "content",
-    (match) => match.context.name === "description",
-    ""
-  );
+  const description = useContextValue<string>(reversedMatches, "description", "");
 
   const { title: overrideTitle, description: overrideDescription } = useOverrideRouteMeta();
 
