@@ -7,7 +7,7 @@ const config: StorybookConfig = {
     reactDocgen: "react-docgen-typescript",
     reactDocgenTypescriptOptions: {
       include: ["src/**/*.tsx"],
-      exclude: ["src/routes/**/*", "src/routes.test/**/*", "**/*.{test,spec}.{js,jsx,mjs,ts,tsx}"],
+      exclude: ["**/*.{test,spec}.{js,jsx,mjs,ts,tsx}"],
     },
   },
   framework: {

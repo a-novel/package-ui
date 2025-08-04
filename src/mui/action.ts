@@ -48,9 +48,6 @@ export const ActionOutline = (color: ActionPaletteColor, palette: PaletteOptions
   outline: "none",
   border: "none",
   color: (palette[color] as Color)[500],
-  borderWidth: "thin",
-  borderStyle: "solid",
-  borderColor: "currentColor",
   backgroundColor: withTransparency(palette.grey!["50"]!, 75),
   boxShadow: `${withTransparency((palette[color] as Color)[100], 75)} 0 calc(1/3 * 1em) 0 0`,
   "&.Mui-disabled": {
