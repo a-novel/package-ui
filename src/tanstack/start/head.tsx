@@ -1,182 +1,127 @@
-import { useClientTags } from "~/tanstack/start/head_tags";
+import {
+  createContext,
+  type Dispatch,
+  type ReactNode,
+  type SetStateAction,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
-import * as React from "react";
+import {
+  Asset,
+  useRouterState,
+  HeadContent as OriginalStupidHeadContent,
+  type AnyRouteMatch,
+  type RouterManagedTag,
+} from "@tanstack/react-router";
 
-import { Asset, type RouterManagedTag, useRouter, useRouterState } from "@tanstack/react-router";
-
-/**
- * Custom head manager that allows the router head config to be overridden through the client components.
- */
 export function HeadContent() {
-  const routeMeta = useRouterState({
-    select: (state) => {
-      return state.matches.map((match) => match.meta!).filter(Boolean);
-    },
-  });
+  const matches = useRouterState({ select: (s) => s.matches });
+  const reversedMatches = useMemo(() => [...matches].reverse(), [matches]);
 
-  const { tags: clientTags } = useClientTags();
+  const title = useContextValue<string>(reversedMatches, "titleBase", "");
+  const titleTemplate = useContextValue<(title: string) => string>(reversedMatches, "titleTemplate", (title) => title);
+  const description = useContextValue<string>(
+    reversedMatches,
+    "content",
+    (match) => match.context.name === "description",
+    ""
+  );
 
-  // The original router tags are left untouched. The custom client tags are appended to the original config.
-  const combinedTags = useTags([...routeMeta, ...clientTags]);
+  const { title: overrideTitle, description: overrideDescription } = useOverrideRouteMeta();
 
-  return combinedTags.map((tag) => <Asset {...tag} key={`tsr-meta-${JSON.stringify(tag)}`} />);
+  const actualTitle: RouterManagedTag = { tag: "title", children: titleTemplate(overrideTitle || title) };
+
+  const actualDescription: RouterManagedTag = {
+    tag: "meta",
+    attrs: { name: "description", content: overrideDescription || description },
+  };
+
+  return (
+    <>
+      <OriginalStupidHeadContent />
+      <Asset {...actualTitle} key={`tsr-meta-${JSON.stringify(actualTitle)}`} />
+      <Asset {...actualDescription} key={`tsr-meta-${JSON.stringify(actualDescription)}`} />
+    </>
+  );
 }
 
-// TODO: https://github.com/TanStack/router/discussions/4728
-//  use exposed methods if they ever become available. Otherwise, follow the original implementation to make sure we
-//  don't miss any feature.
-function useTags(routeMeta: any[]) {
-  const router = useRouter();
-  const meta: Array<RouterManagedTag> = React.useMemo(() => {
-    const resultMeta: Array<RouterManagedTag> = [];
-    const metaByAttribute: Record<string, true> = {};
-    let title: RouterManagedTag | undefined;
-    [...routeMeta].reverse().forEach((metas) => {
-      [...metas].reverse().forEach((m) => {
-        if (!m) return;
+function useContextValue<T>(matches: AnyRouteMatch[], key: string): T | undefined;
+function useContextValue<T>(matches: AnyRouteMatch[], key: string, defaultValue: T): T;
+function useContextValue<T>(
+  matches: AnyRouteMatch[],
+  key: string,
+  matched: (match: AnyRouteMatch) => boolean
+): T | undefined;
+function useContextValue<T>(
+  matches: AnyRouteMatch[],
+  key: string,
+  matched: (match: AnyRouteMatch) => boolean,
+  defaultValue: T
+): T;
 
-        if (m.title) {
-          if (!title) {
-            title = {
-              tag: "title",
-              children: m.title,
-            };
-          }
-        } else {
-          const attribute = m.name ?? m.property;
-          if (attribute) {
-            if (metaByAttribute[attribute]) {
-              return;
-            } else {
-              metaByAttribute[attribute] = true;
-            }
-          }
+function useContextValue<T>(
+  matches: AnyRouteMatch[],
+  key: string,
+  opt1?: T | ((match: AnyRouteMatch) => boolean),
+  opt2?: T
+): T | undefined {
+  const matcher =
+    (opt2 ? (opt1 as (match: AnyRouteMatch) => boolean) : undefined) ?? ((match: AnyRouteMatch) => match.context[key]);
+  const defaultValue = opt2 ?? (opt1 as T);
 
-          resultMeta.push({
-            tag: "meta",
-            attrs: {
-              ...m,
-            },
-          });
-        }
-      });
-    });
-
-    if (title) {
-      resultMeta.push(title);
-    }
-
-    resultMeta.reverse();
-
-    return resultMeta;
-  }, [routeMeta]);
-
-  const links = useRouterState({
-    select: (state) => {
-      const constructed = state.matches
-        .map((match) => match.links!)
-        .filter(Boolean)
-        .flat(1)
-        .map((link) => ({
-          tag: "link",
-          attrs: {
-            ...link,
-          },
-        })) satisfies Array<RouterManagedTag>;
-
-      const manifest = router.ssr?.manifest;
-
-      // These are the assets extracted from the ViteManifest
-      // using the `startManifestPlugin`
-      const assets = state.matches
-        .map((match) => manifest?.routes[match.routeId]?.assets ?? [])
-        .filter(Boolean)
-        .flat(1)
-        .filter((asset) => asset.tag === "link")
-        .map(
-          (asset) =>
-            ({
-              tag: "link",
-              attrs: {
-                ...asset.attrs,
-                suppressHydrationWarning: true,
-              },
-            }) satisfies RouterManagedTag
-        );
-
-      return [...constructed, ...assets];
-    },
-    structuralSharing: true as any,
-  });
-
-  const preloadMeta = useRouterState({
-    select: (state) => {
-      const preloadMeta: Array<RouterManagedTag> = [];
-
-      state.matches
-        .map((match) => router.looseRoutesById[match.routeId]!)
-        .forEach((route) =>
-          router.ssr?.manifest?.routes[route.id]?.preloads?.filter(Boolean).forEach((preload) => {
-            preloadMeta.push({
-              tag: "link",
-              attrs: {
-                rel: "modulepreload",
-                href: preload,
-              },
-            });
-          })
-        );
-
-      return preloadMeta;
-    },
-    structuralSharing: true as any,
-  });
-
-  const styles = useRouterState({
-    select: (state) =>
-      (
-        state.matches
-          .map((match) => match.styles!)
-          .flat(1)
-          .filter(Boolean) as Array<RouterManagedTag>
-      ).map(({ children, ...attrs }) => ({
-        tag: "style",
-        attrs,
-        children,
-      })),
-    structuralSharing: true as any,
-  });
-
-  const headScripts = useRouterState({
-    select: (state) =>
-      (
-        state.matches
-          .map((match) => match.headScripts!)
-          .flat(1)
-          .filter(Boolean) as Array<RouterManagedTag>
-      ).map(({ children, ...script }) => ({
-        tag: "script",
-        attrs: {
-          ...script,
-        },
-        children,
-      })),
-    structuralSharing: true as any,
-  });
-
-  return uniqBy([...meta, ...preloadMeta, ...links, ...styles, ...headScripts] as Array<RouterManagedTag>, (d) => {
-    return JSON.stringify(d);
-  });
+  return matches.find(matcher)?.context[key] ?? defaultValue;
 }
 
-function uniqBy<T>(arr: Array<T>, fn: (item: T) => string) {
-  const seen = new Set<string>();
-  return arr.filter((item) => {
-    const key = fn(item);
-    if (seen.has(key)) {
-      return false;
-    }
-    seen.add(key);
-    return true;
-  });
+export interface OverrideRouteMetaContext {
+  title?: string;
+  setTitle: Dispatch<SetStateAction<string | undefined>>;
+  description?: string;
+  setDescription: Dispatch<SetStateAction<string | undefined>>;
 }
+
+export const overrideRouteMetaContext = createContext<OverrideRouteMetaContext>({
+  title: undefined,
+  setTitle: () => console.warn("Trying to call OverrideRouteMetaContext.setTitle without a provider!"),
+  description: undefined,
+  setDescription: () => console.warn("Trying to call OverrideRouteMetaContext.setDescription without a provider!"),
+});
+
+export function OverrideRouteMetaProvider({ children }: { children: ReactNode }) {
+  const [title, setTitle] = useState<string>();
+  const [description, setDescription] = useState<string>();
+
+  return (
+    <overrideRouteMetaContext.Provider value={{ title, setTitle, description, setDescription }}>
+      {children}
+    </overrideRouteMetaContext.Provider>
+  );
+}
+
+export function useOverrideRouteMeta() {
+  return useContext(overrideRouteMetaContext);
+}
+
+export const useOverrideRouteMetaTitle = (title: string | undefined) => {
+  const { setTitle } = useOverrideRouteMeta();
+
+  useEffect(() => {
+    setTitle(title);
+    return () => {
+      setTitle(undefined);
+    };
+  }, [setTitle, title]);
+};
+
+export const useOverrideRouteMetaDescription = (description: string | undefined) => {
+  const { setDescription } = useOverrideRouteMeta();
+
+  useEffect(() => {
+    setDescription(description);
+    return () => {
+      setDescription(undefined);
+    };
+  }, [setDescription, description]);
+};

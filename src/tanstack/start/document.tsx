@@ -1,6 +1,5 @@
 import { AgoraThemeProvider, BodyStyle } from "~/mui";
-import { HeadContent } from "~/tanstack/start/head";
-import { ClientTagsProvider } from "~/tanstack/start/head_tags";
+import { HeadContent, OverrideRouteMetaProvider } from "~/tanstack/start/head";
 import { TolgeeRouterProvider } from "~/translations";
 
 import type { ComponentType, ReactNode } from "react";
@@ -24,9 +23,8 @@ export function DefaultRootComponent({ wrapper: Wrapper = PassthroughWrapper }: 
 
     return (
       <html lang={tolgeeInstance.getLanguage() ?? tolgeeInstance.getPendingLanguage()}>
-        <ClientTagsProvider>
+        <OverrideRouteMetaProvider>
           <head>
-            <title>...</title>
             <HeadContent />
           </head>
           <body style={BodyStyle}>
@@ -38,7 +36,7 @@ export function DefaultRootComponent({ wrapper: Wrapper = PassthroughWrapper }: 
             </TolgeeProvider>
             <Scripts />
           </body>
-        </ClientTagsProvider>
+        </OverrideRouteMetaProvider>
       </html>
     );
   };

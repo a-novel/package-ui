@@ -1,5 +1,5 @@
 import { MaterialSymbol, StatusPage } from "~/mui/components";
-import { useClientTag } from "~/tanstack/start/head_tags";
+import { useOverrideRouteMetaTitle } from "~/tanstack/start/head";
 import { useTolgeeNs } from "~/translations";
 
 import { Typography } from "@mui/material";
@@ -21,7 +21,7 @@ export function DefaultErrorComponent(preset: Readonly<DefaultErrorComponentProp
     const { t } = useTolgee();
 
     useTolgeeNs(preset.ns);
-    useClientTag(() => [{ title: t(preset.metadata.titleKey, { ns: preset.ns }) }], [t]);
+    useOverrideRouteMetaTitle(t(preset.metadata.titleKey, { ns: preset.ns }));
 
     return (
       <StatusPage color="error" icon={<MaterialSymbol icon="dns" />}>
