@@ -1,12 +1,12 @@
+import type { AnyReactFormWithData } from "~/tanstack/form";
+
 import { type ComponentType } from "react";
 
-import { FormApi, type FormValidationErrorMap, type ReactFormExtendedApi, useForm } from "@tanstack/react-form";
+import { FormApi, type FormValidationErrorMap, useForm } from "@tanstack/react-form";
 
-type AnyReactFormAPI = ReactFormExtendedApi<any, any, any, any, any, any, any, any, any, any, any, any>;
+export type FormRendererProps<P, F extends AnyReactFormWithData<any>> = P & { form: F };
 
-export type FormRendererProps<P, F extends AnyReactFormAPI> = P & { form: F };
-
-export const FormRenderer = <P, F extends AnyReactFormAPI>({
+export const FormRenderer = <P, F extends AnyReactFormWithData<any>>({
   component: Component,
   ...props
 }: FormRendererProps<P, F> & { component: ComponentType<FormRendererProps<P, F>> }) => {
@@ -50,7 +50,7 @@ export interface MockFormProps {
   isSuccess?: boolean;
 }
 
-export const NewMockForm = <F extends AnyReactFormAPI>(props: MockFormProps): F => {
+export const NewMockForm = <F extends AnyReactFormWithData<any>>(props: MockFormProps): F => {
   const api = new FormApi({
     defaultValues: props.values,
   });

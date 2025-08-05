@@ -1,17 +1,18 @@
 import { ErrorBox, InfoBox, MaterialSymbol } from "~/mui/components";
 import { SPACINGS } from "~/mui/utils";
+import type { AnyFieldAPIWithData } from "~/tanstack/form/types";
 
 import { useEffect } from "react";
 
 import { Stack, TextField, type TextFieldProps, type TextFieldVariants } from "@mui/material";
-import { type AnyFieldApi, useStore } from "@tanstack/react-form";
+import { useStore } from "@tanstack/react-form";
 import { T, useTolgee } from "@tolgee/react";
 
 export type TantstackTextFieldProps<Variant extends TextFieldVariants = TextFieldVariants> = Omit<
   TextFieldProps<Variant>,
   "value" | "onChange" | "onBlur"
 > & {
-  field: AnyFieldApi;
+  field: AnyFieldAPIWithData<string>;
   maxLength?: number;
 };
 
