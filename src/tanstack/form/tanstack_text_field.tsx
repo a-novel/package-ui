@@ -4,14 +4,14 @@ import { SPACINGS } from "~/mui/utils";
 import { useEffect } from "react";
 
 import { Stack, TextField, type TextFieldProps, type TextFieldVariants } from "@mui/material";
-import { FieldApi, useStore } from "@tanstack/react-form";
+import { type AnyFieldApi, useStore } from "@tanstack/react-form";
 import { T, useTolgee } from "@tolgee/react";
 
 export type TantstackTextFieldProps<Variant extends TextFieldVariants = TextFieldVariants> = Omit<
   TextFieldProps<Variant>,
   "value" | "onChange" | "onBlur"
 > & {
-  field: FieldApi<any, any, string, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any, any>;
+  field: AnyFieldApi;
   maxLength?: number;
 };
 
