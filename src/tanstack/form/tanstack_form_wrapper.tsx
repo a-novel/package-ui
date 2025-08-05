@@ -7,7 +7,7 @@ import { Button, type ButtonProps, Stack, type StackProps } from "@mui/material"
 import { type ReactFormExtendedApi, useStore } from "@tanstack/react-form";
 
 export interface TanstackFormWrapperProps extends Partial<StackProps> {
-  form: ReactFormExtendedApi<any, any, any, any, any, any, any, any, any, any>;
+  form: ReactFormExtendedApi<any, any, any, any, any, any, any, any, any, any, any, any>;
   submitButton: ReactNode | ((submitting: boolean) => ReactNode);
   submitButtonProps?: Partial<ButtonProps>;
   footer?: ReactNode;

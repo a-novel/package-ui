@@ -13,7 +13,7 @@ interface DemoForm {
 }
 
 const TanstackFormRenderer: FC<{
-  form: ReactFormExtendedApi<DemoForm, any, any, any, any, any, any, any, any, any>;
+  form: ReactFormExtendedApi<DemoForm, any, any, any, any, any, any, any, any, any, any, any>;
 }> = ({ form }) => (
   <Section margin={SPACINGS.LARGE}>
     <TanstackFormWrapper
