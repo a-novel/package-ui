@@ -55,7 +55,7 @@ importers:
         version: 6.2.7
       '@tolgee/react':
         specifier: ^6.2.6
-        version: 6.2.6(react@19.1.1)
+        version: 6.2.7(react@19.1.1)
       '@trivago/prettier-plugin-sort-imports':
         specifier: ^5.2.2
         version: 5.2.2(prettier@3.6.2)
@@ -1436,19 +1436,19 @@ packages:
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
 
-  '@tolgee/core@6.2.6':
-    resolution: {integrity: sha512-AI0UG2zt/AG7g/ja8tL0yZ8Wbuzeeyhz90GpzDub5Af+uRznGNcYzEUdZLkTpwTHWqc+6EDVUBaJM53KgVio0w==}
+  '@tolgee/core@6.2.7':
+    resolution: {integrity: sha512-0Au+m9R23/gmeaLJY0X6lKcR2LSy9dW7hEFrpFvPdJoGvxc8XCNZpKlgnm1N534CwmtIBJ4rzOK6vOrSKbl45w==}
 
   '@tolgee/format-icu@6.2.7':
     resolution: {integrity: sha512-rLa8EZZVX3pDYC3I6HLnLvTgwLr2PAyOw+7SanS7d7SXp9cvcxbX8O6nqHubv6K7YDqVblcj9FoFbvGBQ22PgQ==}
 
-  '@tolgee/react@6.2.6':
-    resolution: {integrity: sha512-hE7SwPCAlZUE+oIEUanVhufweBvAX1/9dM2nwx/mMifZLI6xYwSWxR5CgNrnaMtuFPbharU0yh0pGfzL2c/GIA==}
+  '@tolgee/react@6.2.7':
+    resolution: {integrity: sha512-acZ2bThetoFp/VIWxStrza4RtXX+M7Bfy/f3uMBu2h+fXj3u+BxTR/3YAX67umbhF5RNoOTBPt74EOD+bDtcpQ==}
     peerDependencies:
       react: ^16.14.0 || ^17.0.1 || ^18.1.0 || ^19
 
-  '@tolgee/web@6.2.6':
-    resolution: {integrity: sha512-YtVycDyb9OYyJxzTLGjAzat2dOVnVFq+1jX3tSDD286WRoWsQSEBH395t9zI9OGbW+wPnjdKmLIdrj+iryb9Ug==}
+  '@tolgee/web@6.2.7':
+    resolution: {integrity: sha512-MAgHGkL5RYREwAjUansJt98fCuQFV4uDfP11NLOCHan2Hx9rpuszv88eXX7enq9CE8eS/Ed2pELiSwb5rlYiKg==}
 
   '@trivago/prettier-plugin-sort-imports@5.2.2':
     resolution: {integrity: sha512-fYDQA9e6yTNmA13TLVSA+WMQRc5Bn/c0EUBditUHNfMMxN7M82c38b1kEggVE3pLpZ0FwkwJkUEKMiOi52JXFA==}
@@ -4797,18 +4797,18 @@ snapshots:
     dependencies:
       '@testing-library/dom': 10.4.0
 
-  '@tolgee/core@6.2.6': {}
+  '@tolgee/core@6.2.7': {}
 
   '@tolgee/format-icu@6.2.7': {}
 
-  '@tolgee/react@6.2.6(react@19.1.1)':
+  '@tolgee/react@6.2.7(react@19.1.1)':
     dependencies:
-      '@tolgee/web': 6.2.6
+      '@tolgee/web': 6.2.7
       react: 19.1.1
 
-  '@tolgee/web@6.2.6':
+  '@tolgee/web@6.2.7':
     dependencies:
-      '@tolgee/core': 6.2.6
+      '@tolgee/core': 6.2.7
 
   '@trivago/prettier-plugin-sort-imports@5.2.2(prettier@3.6.2)':
     dependencies:
