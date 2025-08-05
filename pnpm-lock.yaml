@@ -52,7 +52,7 @@ importers:
         version: 1.130.12(@tanstack/react-query@5.84.1(react@19.1.1))(@tanstack/react-router@1.130.12(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(@tanstack/router-core@1.130.12)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@tolgee/format-icu':
         specifier: ^6.2.6
-        version: 6.2.6
+        version: 6.2.7
       '@tolgee/react':
         specifier: ^6.2.6
         version: 6.2.6(react@19.1.1)
@@ -1439,8 +1439,8 @@ packages:
   '@tolgee/core@6.2.6':
     resolution: {integrity: sha512-AI0UG2zt/AG7g/ja8tL0yZ8Wbuzeeyhz90GpzDub5Af+uRznGNcYzEUdZLkTpwTHWqc+6EDVUBaJM53KgVio0w==}
 
-  '@tolgee/format-icu@6.2.6':
-    resolution: {integrity: sha512-ojEiLrr9DMgpL/v5NIkacK8DDOEyrMfdmT4kgfievHh/IQ6/2FNyOGW069VExf6bpJSzzQ4y3vAiBBgeM5Ftvg==}
+  '@tolgee/format-icu@6.2.7':
+    resolution: {integrity: sha512-rLa8EZZVX3pDYC3I6HLnLvTgwLr2PAyOw+7SanS7d7SXp9cvcxbX8O6nqHubv6K7YDqVblcj9FoFbvGBQ22PgQ==}
 
   '@tolgee/react@6.2.6':
     resolution: {integrity: sha512-hE7SwPCAlZUE+oIEUanVhufweBvAX1/9dM2nwx/mMifZLI6xYwSWxR5CgNrnaMtuFPbharU0yh0pGfzL2c/GIA==}
@@ -4799,7 +4799,7 @@ snapshots:
 
   '@tolgee/core@6.2.6': {}
 
-  '@tolgee/format-icu@6.2.6': {}
+  '@tolgee/format-icu@6.2.7': {}
 
   '@tolgee/react@6.2.6(react@19.1.1)':
     dependencies:
