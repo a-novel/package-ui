@@ -50,14 +50,14 @@ function useContextValue<T>(matches: AnyRouteMatch[], key: string, defaultValue?
   return matches.find((match) => match.context[key])?.context[key] ?? defaultValue;
 }
 
-export interface OverrideRouteMetaContext {
+export interface OverrideRouteMetaContextType {
   title?: string;
   setTitle: Dispatch<SetStateAction<string | undefined>>;
   description?: string;
   setDescription: Dispatch<SetStateAction<string | undefined>>;
 }
 
-export const overrideRouteMetaContext = createContext<OverrideRouteMetaContext>({
+export const OverrideRouteMetaContext = createContext<OverrideRouteMetaContextType>({
   title: undefined,
   setTitle: () => console.warn("Trying to call OverrideRouteMetaContext.setTitle without a provider!"),
   description: undefined,
@@ -69,14 +69,14 @@ export function OverrideRouteMetaProvider({ children }: { children: ReactNode })
   const [description, setDescription] = useState<string>();
 
   return (
-    <overrideRouteMetaContext.Provider value={{ title, setTitle, description, setDescription }}>
+    <OverrideRouteMetaContext value={{ title, setTitle, description, setDescription }}>
       {children}
-    </overrideRouteMetaContext.Provider>
+    </OverrideRouteMetaContext>
   );
 }
 
 export function useOverrideRouteMeta() {
-  return useContext(overrideRouteMetaContext);
+  return useContext(OverrideRouteMetaContext);
 }
 
 export const useOverrideRouteMetaTitle = (title: string | undefined) => {
