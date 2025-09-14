@@ -19,7 +19,7 @@ importers:
         version: 9.35.0
       '@fontsource/arimo':
         specifier: ^5.2.6
-        version: 5.2.6
+        version: 5.2.7
       '@mui/material':
         specifier: ^7.2.0
         version: 7.3.2(@emotion/react@11.14.0(@types/react@19.1.13)(react@19.1.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.1.13)(react@19.1.1))(@types/react@19.1.13)(react@19.1.1))(@types/react@19.1.13)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -946,8 +946,8 @@ packages:
     resolution: {integrity: sha512-Z5kJ+wU3oA7MMIqVR9tyZRtjYPr4OC004Q4Rw7pgOKUOKkJfZ3O24nz3WYfGRpMDNmcOi3TwQOmgm7B7Tpii0w==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@fontsource/arimo@5.2.6':
-    resolution: {integrity: sha512-D2fJ0DHYjJz0mSiqtd4HUykEaRZ1o0hMxyFg8/QAnDfNiZapPDXKaflRX4ZDuyxwkI/oizJ9yZkwdBL75MFnoQ==}
+  '@fontsource/arimo@5.2.7':
+    resolution: {integrity: sha512-APdx7DyBF3VRxOpfiWxN/IlPepMxgbEe4RwZ4QV1zGUt57nbnedF/poRfMI2p5FTldRV23mlo4XUQ9zSqJ+XLg==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -4257,7 +4257,7 @@ snapshots:
       '@eslint/core': 0.15.2
       levn: 0.4.1
 
-  '@fontsource/arimo@5.2.6': {}
+  '@fontsource/arimo@5.2.7': {}
 
   '@humanfs/core@0.19.1': {}
 
