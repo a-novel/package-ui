@@ -40,7 +40,7 @@ importers:
         version: 5.89.0(eslint@9.35.0)(typescript@5.9.2)
       '@tanstack/react-form':
         specifier: ^1.14.2
-        version: 1.20.0(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+        version: 1.21.0(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@tanstack/react-query':
         specifier: ^5.83.0
         version: 5.89.0(react@19.1.1)
@@ -1352,13 +1352,17 @@ packages:
     resolution: {integrity: sha512-0XR1poYvPQoPpmfDYLEqUGu5ePAQ4pdgN3VFsZBNAeze7qubVpsIY1o1R6PZpKep/DKu33GSm2NhwpCLkMs2Cw==}
     engines: {node: '>=14'}
 
+  '@tanstack/devtools-event-client@0.2.4':
+    resolution: {integrity: sha512-oqRF1KNYtVUcJV/xXDf3OdJ+wynIcrVxML5a+JBaNFgnyclu14gV1sxi8QfuNMznreyvNxajJbZMS8HHtO+MTA==}
+    engines: {node: '>=18'}
+
   '@tanstack/eslint-plugin-query@5.89.0':
     resolution: {integrity: sha512-vz8TEuw9GO0xXIdreMpcofvOY17T3cjgob9bSFln8yQsKsbsUvtpvV3F8pVC3tZEDq0IwO++3/e0/+7YKEarNA==}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
 
-  '@tanstack/form-core@1.20.0':
-    resolution: {integrity: sha512-FGlKvcsusOf4756vtN1EoDI4h50r4/11eTcpF3NcnE04N/bSn2gP7cdhG6tYA0lJWzM9H1pNIzZ86uZ4MHB9eA==}
+  '@tanstack/form-core@1.21.0':
+    resolution: {integrity: sha512-C1fgzlDUIWrFJTpWZVJJxTpFP4PdZXGnPpL5nQ0kv/xEwY4pVxdaHp83MhZeEi9hyYSZMWVcD8YdIp0jRjGPug==}
 
   '@tanstack/history@1.131.2':
     resolution: {integrity: sha512-cs1WKawpXIe+vSTeiZUuSBy8JFjEuDgdMKZFRLKwQysKo8y2q6Q1HvS74Yw+m5IhOW1nTZooa6rlgdfXcgFAaw==}
@@ -1367,8 +1371,8 @@ packages:
   '@tanstack/query-core@5.89.0':
     resolution: {integrity: sha512-joFV1MuPhSLsKfTzwjmPDrp8ENfZ9N23ymFu07nLfn3JCkSHy0CFgsyhHTJOmWaumC/WiNIKM0EJyduCF/Ih/Q==}
 
-  '@tanstack/react-form@1.20.0':
-    resolution: {integrity: sha512-1UfWqEYRnHr4cooGbHiTQqoqus8soNUH+RLD6UyhIQEvomOSQMX0JgX+zGSl08tIugrnWcAnh50n5T9IIs/Evw==}
+  '@tanstack/react-form@1.21.0':
+    resolution: {integrity: sha512-1ohmDEJEl9tK7HD8Ys5PITqZ28bwMHDZtogDBdcdWAP2vmkjxo5KONERhiTTtjSVliTfhZ+ZD4xMJZL3qcwLgg==}
     peerDependencies:
       '@tanstack/react-start': ^1.130.10
       react: ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -4651,6 +4655,8 @@ snapshots:
       - supports-color
       - typescript
 
+  '@tanstack/devtools-event-client@0.2.4': {}
+
   '@tanstack/eslint-plugin-query@5.89.0(eslint@9.35.0)(typescript@5.9.2)':
     dependencies:
       '@typescript-eslint/utils': 8.44.0(eslint@9.35.0)(typescript@5.9.2)
@@ -4659,17 +4665,18 @@ snapshots:
       - supports-color
       - typescript
 
-  '@tanstack/form-core@1.20.0':
+  '@tanstack/form-core@1.21.0':
     dependencies:
+      '@tanstack/devtools-event-client': 0.2.4
       '@tanstack/store': 0.7.5
 
   '@tanstack/history@1.131.2': {}
 
   '@tanstack/query-core@5.89.0': {}
 
-  '@tanstack/react-form@1.20.0(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
+  '@tanstack/react-form@1.21.0(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
     dependencies:
-      '@tanstack/form-core': 1.20.0
+      '@tanstack/form-core': 1.21.0
       '@tanstack/react-store': 0.7.5(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       decode-formdata: 0.9.0
       devalue: 5.3.2
