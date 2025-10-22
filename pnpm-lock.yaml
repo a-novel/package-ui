@@ -46,10 +46,10 @@ importers:
         version: 5.90.5(react@19.2.0)
       '@tanstack/react-router':
         specifier: ^1.129.8
-        version: 1.133.21(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 1.133.22(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@tanstack/react-router-with-query':
         specifier: ^1.129.8
-        version: 1.130.17(@tanstack/react-query@5.90.5(react@19.2.0))(@tanstack/react-router@1.133.21(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(@tanstack/router-core@1.133.20)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 1.130.17(@tanstack/react-query@5.90.5(react@19.2.0))(@tanstack/react-router@1.133.22(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(@tanstack/router-core@1.133.20)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@tolgee/format-icu':
         specifier: ^6.2.6
         version: 6.2.7
@@ -1407,8 +1407,8 @@ packages:
       react: '>=18.0.0 || >=19.0.0'
       react-dom: '>=18.0.0 || >=19.0.0'
 
-  '@tanstack/react-router@1.133.21':
-    resolution: {integrity: sha512-mzctHlMvrBhC1+O5KeA4ZDV6P+rcuDSWcIOVtCbeE0ZXzQi52csyXid+vUVMdfI1HK3Pa1sVq9fzVTzbvS49XA==}
+  '@tanstack/react-router@1.133.22':
+    resolution: {integrity: sha512-0tg2yoXVMvvgR3UdOhEX9ICmgZ/Ou/I8VOl07exSYEJYfyCr5nhtB/62F9NGbuUZVrJnCzc8Rz0e4/MYU18pIg==}
     engines: {node: '>=12'}
     peerDependencies:
       react: '>=18.0.0 || >=19.0.0'
@@ -4729,15 +4729,15 @@ snapshots:
       '@tanstack/query-core': 5.90.5
       react: 19.2.0
 
-  '@tanstack/react-router-with-query@1.130.17(@tanstack/react-query@5.90.5(react@19.2.0))(@tanstack/react-router@1.133.21(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(@tanstack/router-core@1.133.20)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+  '@tanstack/react-router-with-query@1.130.17(@tanstack/react-query@5.90.5(react@19.2.0))(@tanstack/react-router@1.133.22(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(@tanstack/router-core@1.133.20)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
       '@tanstack/react-query': 5.90.5(react@19.2.0)
-      '@tanstack/react-router': 1.133.21(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@tanstack/react-router': 1.133.22(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@tanstack/router-core': 1.133.20
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
 
-  '@tanstack/react-router@1.133.21(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+  '@tanstack/react-router@1.133.22(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
       '@tanstack/history': 1.133.19
       '@tanstack/react-store': 0.7.7(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
